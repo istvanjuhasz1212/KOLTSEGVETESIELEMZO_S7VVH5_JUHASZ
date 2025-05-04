@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         return incomes;
     }
-
+    
     function collectExpenses() {
         const expenseItems = document.querySelectorAll('.expense-item');
         const expenses = [];
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         return expenses;
     }
-
+    
     function displayResults(data) {
         const resultsDiv = document.getElementById('results');
         const summaryDiv = document.getElementById('summary');
@@ -209,4 +209,11 @@ document.addEventListener('DOMContentLoaded', function() {
         resultsDiv.scrollIntoView({ behavior: 'smooth' });
     }
     
+    function formatCurrency(amount) {
+        return new Intl.NumberFormat('hu-HU', { 
+            style: 'currency', 
+            currency: 'HUF',
+            maximumFractionDigits: 0
+        }).format(amount);
+    }
 });
