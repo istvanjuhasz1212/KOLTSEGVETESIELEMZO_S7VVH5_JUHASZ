@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\KOLTSEGVETESIELEMZO_S7VVH5_JUHASZ.props" />
+</Project>
