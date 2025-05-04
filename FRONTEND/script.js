@@ -103,4 +103,28 @@ document.addEventListener('DOMContentLoaded', function() {
         
         return incomes;
     }
+
+    function collectExpenses() {
+        const expenseItems = document.querySelectorAll('.expense-item');
+        const expenses = [];
+        
+        expenseItems.forEach(item => {
+            const inputs = item.querySelectorAll('input');
+            const select = item.querySelector('select');
+            
+            const name = inputs[0].value.trim();
+            const amount = parseFloat(inputs[1].value);
+            const category = select.value;
+            
+            if (name && !isNaN(amount) && amount > 0 && category) {
+                expenses.push({
+                    name: name,
+                    amount: amount,
+                    category: category
+                });
+            }
+        });
+        
+        return expenses;
+    }
 });
