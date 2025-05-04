@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KOLTSEGVETESIELEMZO_S7VVH5_JUHASZ")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+df0a5f2590332c3f734967505f6c6e150e243712")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f75c9e44d32cedad7f07ca4620336140e05d1ce5")]
 [assembly: System.Reflection.AssemblyProductAttribute("KOLTSEGVETESIELEMZO_S7VVH5_JUHASZ")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KOLTSEGVETESIELEMZO_S7VVH5_JUHASZ")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
