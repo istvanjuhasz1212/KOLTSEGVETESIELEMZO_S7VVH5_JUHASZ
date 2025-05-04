@@ -127,4 +127,86 @@ document.addEventListener('DOMContentLoaded', function() {
         
         return expenses;
     }
+
+    function displayResults(data) {
+        const resultsDiv = document.getElementById('results');
+        const summaryDiv = document.getElementById('summary');
+        
+        // Összegzés megjelenítése
+        summaryDiv.innerHTML = `
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h6>Összes bevétel</h6>
+                            <h4>${formatCurrency(data.totalIncome)}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h6>Összes kiadás</h6>
+                            <h4>${formatCurrency(data.totalExpenses)}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card ${data.status === 'savings' ? 'bg-success' : 'bg-danger'} text-white">
+                        <div class="card-body">
+                            <h6>${data.status === 'savings' ? 'Megtakarítás' : 'Hiány'}</h6>
+                            <h4>${formatCurrency(Math.abs(data.savings))}</h4>
+                            ${data.expenseWarning ? `<p class="warning">${data.expenseWarning}</p>` : ''}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Kategóriánkénti kiadások diagram
+        const chartContainer = document.getElementById('category-chart');
+        chartContainer.innerHTML = '';
+        
+        // Legnagyobb érték meghatározása a skálázáshoz
+        const maxExpense = Math.max(...Object.values(data.expensesByCategory), 0);
+        
+        for (const [category, amount] of Object.entries(data.expensesByCategory)) {
+            const percentage = maxExpense > 0 ? (amount / maxExpense) * 100 : 0;
+            
+            const barElement = document.createElement('div');
+            barElement.className = 'chart-bar';
+            barElement.innerHTML = `
+                <div class="chart-bar-label">${category}</div>
+                <div class="chart-bar-container">
+                    <div class="chart-bar-fill" style="width: ${percentage}%"></div>
+                </div>
+                <div class="chart-bar-amount">${formatCurrency(amount)}</div>
+            `;
+            
+            chartContainer.appendChild(barElement);
+        }
+        
+        // Megtakarítás/hiány diagram
+        const savingsChart = document.getElementById('savings-chart');
+        savingsChart.innerHTML = '';
+        
+        const total = Math.max(Math.abs(data.savings), data.totalIncome);
+        const savingsWidth = (Math.abs(data.savings) / total) * 100;
+        
+        const savingsFill = document.createElement('div');
+        savingsFill.className = `savings-fill ${data.status === 'savings' ? 'savings-positive' : 'savings-negative'}`;
+        savingsFill.style.width = `${savingsWidth}%`;
+        
+        const savingsText = document.createElement('div');
+        savingsText.className = 'px-3';
+        savingsText.textContent = `${data.status === 'savings' ? 'Megtakarítás' : 'Hiány'}: ${formatCurrency(Math.abs(data.savings))}`;
+        
+        savingsChart.appendChild(savingsFill);
+        savingsChart.appendChild(savingsText);
+        
+        // Eredmények megjelenítése
+        resultsDiv.classList.remove('d-none');
+        resultsDiv.scrollIntoView({ behavior: 'smooth' });
+    }
+    
 });
