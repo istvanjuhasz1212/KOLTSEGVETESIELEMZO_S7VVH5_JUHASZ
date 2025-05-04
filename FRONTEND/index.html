@@ -8,6 +8,78 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Költségvetési Elemző</h1>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5>Bevételek</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="income-container">
+                            <div class="income-item mb-3">
+                                <input type="text" class="form-control mb-2" placeholder="Bevétel forrása" required>
+                                <input type="number" class="form-control" placeholder="Összeg (Ft)" min="0" required>
+                            </div>
+                        </div>
+                        <button id="add-income" class="btn btn-outline-primary">+ Bevétel hozzáadása</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header bg-danger text-white">
+                        <h5>Kiadások</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="expense-container">
+                            <div class="expense-item mb-3">
+                                <input type="text" class="form-control mb-2" placeholder="Kiadás neve" required>
+                                <input type="number" class="form-control mb-2" placeholder="Összeg (Ft)" min="0" required>
+                                <select class="form-control" required>
+                                    <option value="">Válassz kategóriát</option>
+                                    <option value="Alapvető">Alapvető</option>
+                                    <option value="Szórakozás">Szórakozás</option>
+                                    <option value="Lakhatás">Lakhatás</option>
+                                    <option value="Közlekedés">Közlekedés</option>
+                                    <option value="Egészség">Egészség</option>
+                                    <option value="Egyéb">Egyéb</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button id="add-expense" class="btn btn-outline-danger">+ Kiadás hozzáadása</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mb-4">
+            <button id="analyze-btn" class="btn btn-success btn-lg">Elemzés indítása</button>
+        </div>
+        
+        <div id="results" class="d-none">
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5>Eredmények</h5>
+                </div>
+                <div class="card-body">
+                    <div id="summary" class="mb-4"></div>
+                    <div id="chart-container" class="mb-4">
+                        <h5>Kiadások megoszlása</h5>
+                        <div id="category-chart"></div>
+                    </div>
+                    <div id="savings-chart-container">
+                        <h5>Megtakarítás/Hiány</h5>
+                        <div id="savings-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
