@@ -45,42 +45,62 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-        // Elemzés indítása
-        document.getElementById('analyze-btn').addEventListener('click', function() {
-            // Adatok összegyűjtése
-            const incomes = collectIncomes();
-            const expenses = collectExpenses();
-            
-            if (incomes.length === 0 || expenses.length === 0) {
-                alert('Kérjük adjon meg legalább egy bevételt és egy kiadást!');
-                return;
+    // Elemzés indítása
+    document.getElementById('analyze-btn').addEventListener('click', function() {
+        // Adatok összegyűjtése
+        const incomes = collectIncomes();
+        const expenses = collectExpenses();
+        
+        if (incomes.length === 0 || expenses.length === 0) {
+            alert('Kérjük adjon meg legalább egy bevételt és egy kiadást!');
+            return;
+        }
+        
+        // API hívás
+        fetch('http://localhost:5001/api/budget/analyze', {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              incomes: incomes,
+              expenses: expenses
+            })
+          })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Hálózati válasz nem megfelelő');
             }
-            
-            // API hívás
-            fetch('http://localhost:5001/api/budget/analyze', {
-                method: 'POST',
-                mode: 'cors',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                  incomes: incomes,
-                  expenses: expenses
-                })
-              })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Hálózati válasz nem megfelelő');
-                }
-                return response.json();
-            })
-            .then(data => {
-                displayResults(data);
-            })
-            .catch(error => {
-                console.error('Hiba a kérés során:', error);
-                alert('Hiba történt az elemzés során: ' + error.message);
-            });
+            return response.json();
+        })
+        .then(data => {
+            displayResults(data);
+        })
+        .catch(error => {
+            console.error('Hiba a kérés során:', error);
+            alert('Hiba történt az elemzés során: ' + error.message);
         });
+    });
+    
+    function collectIncomes() {
+        const incomeItems = document.querySelectorAll('.income-item');
+        const incomes = [];
+        
+        incomeItems.forEach(item => {
+            const inputs = item.querySelectorAll('input');
+            const source = inputs[0].value.trim();
+            const amount = parseFloat(inputs[1].value);
+            
+            if (source && !isNaN(amount) && amount > 0) {
+                incomes.push({
+                    source: source,
+                    amount: amount
+                });
+            }
+        });
+        
+        return incomes;
+    }
 });
