@@ -1,8 +1,8 @@
-﻿using System;
-
-public class Class1
+﻿namespace FullStack.Models
 {
-	public Class1()
-	{
-	}
+    public class BudgetData
+    {
+        public List<Income> Incomes { get; set; } = new();
+        public List<Expense> Expenses { get; set; } = new();
+    }
 }
