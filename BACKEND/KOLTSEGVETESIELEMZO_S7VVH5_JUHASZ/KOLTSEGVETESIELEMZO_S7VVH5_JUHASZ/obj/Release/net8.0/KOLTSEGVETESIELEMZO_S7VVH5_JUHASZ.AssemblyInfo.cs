@@ -12,7 +12,7 @@ using System;
 using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("KOLTSEGVETESIELEMZO_S7VVH5_JUHASZ")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b13ec663bc652384bc43617ea51846aaff4f4fd")]
 [assembly: System.Reflection.AssemblyProductAttribute("KOLTSEGVETESIELEMZO_S7VVH5_JUHASZ")]
