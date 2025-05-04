@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KOLTSEGVETESIELEMZO_S7VVH5_JUHASZ")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4d4a2fdc6e582f440d53965190204e4b53cda675")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5e1f0e741e7f8513ce24ea1e14e493f574685cf1")]
 [assembly: System.Reflection.AssemblyProductAttribute("KOLTSEGVETESIELEMZO_S7VVH5_JUHASZ")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KOLTSEGVETESIELEMZO_S7VVH5_JUHASZ")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
